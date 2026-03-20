@@ -1,4 +1,5 @@
 import { PROGRAM_LIST } from "@/data/program-list-from-json";
+import { appendCurrentPageUtmParams } from "@/lib/append-utm-to-url";
 import type { ProgramListItem } from "@/types/program";
 import "./program-list.css";
 
@@ -82,7 +83,7 @@ function ProgramCard({ item }: { item: ProgramListItem }) {
     return (
       <a
         className="program-card program-card--link"
-        href={item.ticketUrl}
+        href={appendCurrentPageUtmParams(item.ticketUrl)}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={buildTicketAriaLabel(item)}
