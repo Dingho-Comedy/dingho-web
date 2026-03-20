@@ -226,7 +226,7 @@ body {
   /* Half-width in vw (full-bleed hero ≈ viewport) — drives edge-aligned mask */
   --hero-bg-half-w: calc(var(--hero-bg-fract) * 50vw);
   /* Fade width past each vertical edge of the art */
-  --hero-bg-edge-feather: min(5vw, 3.25rem);
+  --hero-bg-edge-feather: min(12vw, 7.5rem);
   /* Distance from top of hero to top of background image */
   --hero-bg-offset-y: 30dvh;
   position: relative;
@@ -261,19 +261,31 @@ body {
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0, 0, 0, 0.35) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather)),
+    rgba(0, 0, 0, 0.08) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather) * 0.9),
+    rgba(0, 0, 0, 0.2) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather) * 0.7),
+    rgba(0, 0, 0, 0.4) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather) * 0.5),
+    rgba(0, 0, 0, 0.65) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather) * 0.25),
     #000 calc(50vw - var(--hero-bg-half-w)),
     #000 calc(50vw + var(--hero-bg-half-w)),
-    rgba(0, 0, 0, 0.35) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather)),
+    rgba(0, 0, 0, 0.65) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather) * 0.25),
+    rgba(0, 0, 0, 0.4) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather) * 0.5),
+    rgba(0, 0, 0, 0.2) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather) * 0.7),
+    rgba(0, 0, 0, 0.08) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather) * 0.9),
     transparent 100%
   );
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0, 0, 0, 0.35) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather)),
+    rgba(0, 0, 0, 0.08) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather) * 0.9),
+    rgba(0, 0, 0, 0.2) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather) * 0.7),
+    rgba(0, 0, 0, 0.4) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather) * 0.5),
+    rgba(0, 0, 0, 0.65) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather) * 0.25),
     #000 calc(50vw - var(--hero-bg-half-w)),
     #000 calc(50vw + var(--hero-bg-half-w)),
-    rgba(0, 0, 0, 0.35) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather)),
+    rgba(0, 0, 0, 0.65) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather) * 0.25),
+    rgba(0, 0, 0, 0.4) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather) * 0.5),
+    rgba(0, 0, 0, 0.2) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather) * 0.7),
+    rgba(0, 0, 0, 0.08) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather) * 0.9),
     transparent 100%
   );
   mask-repeat: no-repeat;
@@ -318,7 +330,7 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: min(11vw, 4.25rem);
+  width: min(15vw, 6rem);
   backdrop-filter: blur(8px) saturate(1.02);
   -webkit-backdrop-filter: blur(8px) saturate(1.02);
 }
@@ -339,15 +351,17 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: min(12vw, 4.75rem);
+  width: min(18vw, 7rem);
 }
 
 .hero__side-fade__wash--left {
   left: 0;
   background: linear-gradient(
     to right,
-    color-mix(in srgb, var(--color-bg) 94%, transparent) 0%,
-    color-mix(in srgb, var(--color-bg) 35%, transparent) 55%,
+    color-mix(in srgb, var(--color-bg) 96%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg) 75%, transparent) 25%,
+    color-mix(in srgb, var(--color-bg) 45%, transparent) 50%,
+    color-mix(in srgb, var(--color-bg) 20%, transparent) 75%,
     transparent 100%
   );
 }
@@ -356,8 +370,10 @@ body {
   right: 0;
   background: linear-gradient(
     to left,
-    color-mix(in srgb, var(--color-bg) 94%, transparent) 0%,
-    color-mix(in srgb, var(--color-bg) 35%, transparent) 55%,
+    color-mix(in srgb, var(--color-bg) 96%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg) 75%, transparent) 25%,
+    color-mix(in srgb, var(--color-bg) 45%, transparent) 50%,
+    color-mix(in srgb, var(--color-bg) 20%, transparent) 75%,
     transparent 100%
   );
 }
