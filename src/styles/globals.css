@@ -1,0 +1,555 @@
+/*
+  Design tokens aligned with Apple Human Interface Guidelines (spacing rhythm,
+  system typography, minimum interactive sizes) and a strict monochrome palette.
+  Content will be layered in later; this file establishes the visual framework.
+*/
+
+:root {
+  color-scheme: light;
+
+  /* Monochrome surfaces — light only */
+  --color-bg: #ffffff;
+  --color-bg-elevated: #f5f5f7;
+  --color-fg: #000000;
+  --color-fg-secondary: rgba(0, 0, 0, 0.56);
+  --color-fg-tertiary: rgba(0, 0, 0, 0.35);
+  --color-separator: rgba(0, 0, 0, 0.12);
+
+  /* Layout — HIG uses a clear 8pt grid; we use rem for web (1rem ≈ 16px) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Typography — SF on Apple platforms; fallbacks elsewhere */
+  --font-stack:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-size-body: 1.0625rem;
+  --font-size-callout: 1rem;
+  --font-size-footnote: 0.8125rem;
+  --line-height-body: 1.47059;
+  --line-height-tight: 1.2;
+
+  /* Chrome height placeholders (navigation bars scale with safe area) */
+  --header-height: 3.25rem;
+
+  /* Minimum tap target (HIG ~44pt) — use on future controls */
+  --min-tap-target: 2.75rem;
+
+  /* Hero display (loaded via Google Fonts in index.html) */
+  --font-hero-script: "Pacifico", cursive;
+  /* Footer slogan — 站酷庆科黄油体 */
+  --font-footer-display: "ZCOOL QingKe HuangYou", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    sans-serif;
+
+  /* Chunky stroke to echo hero doodle line weight */
+  --hero-cta-border-w: 0.3125rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--font-stack);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: 400;
+  letter-spacing: -0.011em;
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+.site-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--color-separator);
+  background-color: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  padding-top: env(safe-area-inset-top);
+}
+
+.site-header__inner {
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-inline: max(var(--space-4), env(safe-area-inset-left))
+    max(var(--space-4), env(safe-area-inset-right));
+  min-height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.site-header__logo-link {
+  display: flex;
+  align-items: center;
+  min-height: var(--min-tap-target);
+  min-width: var(--min-tap-target);
+  border-radius: 0.5rem;
+}
+
+.site-header__logo-link:focus-visible {
+  outline: 2px solid var(--color-fg);
+  outline-offset: 2px;
+}
+
+.site-header__logo {
+  display: block;
+  height: 2.25rem;
+  width: auto;
+  max-width: 10rem;
+  object-fit: contain;
+}
+
+.site-header__nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--min-tap-target);
+  min-width: 0;
+}
+
+.site-header__nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(0.25rem, 1.5vw, 1rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-header__nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--min-tap-target);
+  padding: 0.35rem 0.45rem;
+  font-size: var(--font-size-callout);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--color-fg);
+  text-decoration: none;
+  border-radius: 0.45rem;
+  transition:
+    opacity 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.site-header__nav-link:hover {
+  opacity: 0.72;
+}
+
+.site-header__nav-link:focus-visible {
+  outline: 2px solid var(--color-fg);
+  outline-offset: 2px;
+}
+
+.site-header__nav-label--mobile {
+  display: none;
+}
+
+@media (max-width: 47.99rem) {
+  .site-header__nav-label--desktop {
+    display: none;
+  }
+
+  .site-header__nav-label--mobile {
+    display: inline;
+  }
+
+  .site-header__nav-link {
+    padding-inline: 0.35rem;
+    font-size: 0.9375rem;
+  }
+}
+
+.site-main {
+  flex: 1;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding: 0;
+}
+
+/* ——— Hero: desktop full viewport height; mobile 85dvh + full-width bottom art ——— */
+
+/*
+  Art width + vertical offset from top of hero. Offset pushes the bitmap down so
+  headline sits over the empty “sky” in the asset, not the car/characters.
+*/
+.hero {
+  --hero-bg-x: center;
+  /* Bitmap width; keep --hero-bg-fract numerically in sync (0.65 ↔ 65%). */
+  --hero-bg-fract: 0.65;
+  --hero-bg-width: 65%;
+  /* Half-width in vw (full-bleed hero ≈ viewport) — drives edge-aligned mask */
+  --hero-bg-half-w: calc(var(--hero-bg-fract) * 50vw);
+  /* Fade width past each vertical edge of the art */
+  --hero-bg-edge-feather: min(5vw, 3.25rem);
+  /* Distance from top of hero to top of background image */
+  --hero-bg-offset-y: 30dvh;
+  position: relative;
+  height: 100dvh;
+  min-height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-bg);
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    --hero-bg-offset-y: 26dvh;
+  }
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg);
+  background-image: url("/images/hero.png");
+  background-repeat: no-repeat;
+  background-size: var(--hero-bg-width) auto;
+  background-position: var(--hero-bg-x) var(--hero-bg-offset-y);
+  /*
+    Feather aligned to the *illustration* left/right (center ± half width), not
+    the viewport rim — so the fade reads on the drawing, not only in the margin.
+  */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather)),
+    #000 calc(50vw - var(--hero-bg-half-w)),
+    #000 calc(50vw + var(--hero-bg-half-w)),
+    rgba(0, 0, 0, 0.35) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather)),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) calc(50vw - var(--hero-bg-half-w) - var(--hero-bg-edge-feather)),
+    #000 calc(50vw - var(--hero-bg-half-w)),
+    #000 calc(50vw + var(--hero-bg-half-w)),
+    rgba(0, 0, 0, 0.35) calc(50vw + var(--hero-bg-half-w) + var(--hero-bg-edge-feather)),
+    transparent 100%
+  );
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+}
+
+@media (max-width: 47.99rem) {
+  .hero {
+    --hero-bg-width: 100%;
+    --hero-bg-fract: 1;
+    --hero-bg-half-w: 50vw;
+    --hero-cta-border-w: 0.1875rem;
+    height: 85dvh;
+    min-height: 85dvh;
+  }
+
+  .hero__bg {
+    background-size: 100% auto;
+    background-position: center bottom;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .hero__side-fade {
+    display: none;
+  }
+}
+
+/*
+  Extra rim soften at the viewport edge (optional); main art fade is mask above.
+*/
+.hero__side-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__side-fade__blur {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(11vw, 4.25rem);
+  backdrop-filter: blur(8px) saturate(1.02);
+  -webkit-backdrop-filter: blur(8px) saturate(1.02);
+}
+
+.hero__side-fade__blur--left {
+  left: 0;
+  mask-image: linear-gradient(to right, black 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 0%, transparent 100%);
+}
+
+.hero__side-fade__blur--right {
+  right: 0;
+  mask-image: linear-gradient(to left, black 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, black 0%, transparent 100%);
+}
+
+.hero__side-fade__wash {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(12vw, 4.75rem);
+}
+
+.hero__side-fade__wash--left {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--color-bg) 94%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg) 35%, transparent) 55%,
+    transparent 100%
+  );
+}
+
+.hero__side-fade__wash--right {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    color-mix(in srgb, var(--color-bg) 94%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg) 35%, transparent) 55%,
+    transparent 100%
+  );
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Bottom fade: opacity-only (no backdrop blur) — long, soft ramp into page bg */
+@media (max-width: 47.99rem) {
+  .hero__scrim {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 62%,
+      color-mix(in srgb, var(--color-bg) 18%, transparent) 78%,
+      color-mix(in srgb, var(--color-bg) 55%, transparent) 90%,
+      var(--color-bg) 100%
+    );
+  }
+}
+
+@media (min-width: 48rem) {
+  .hero__scrim {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 65%,
+      color-mix(in srgb, var(--color-bg) 15%, transparent) 80%,
+      color-mix(in srgb, var(--color-bg) 50%, transparent) 91%,
+      var(--color-bg) 100%
+    );
+  }
+}
+
+/* Title block: upper 50% of hero */
+.hero__inner {
+  position: relative;
+  z-index: 3;
+  box-sizing: border-box;
+  height: 50%;
+  min-height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-inline: max(var(--space-4), env(safe-area-inset-left))
+    max(var(--space-4), env(safe-area-inset-right));
+  padding-top: max(
+    calc(env(safe-area-inset-top) + var(--space-10)),
+    clamp(4.5rem, 11dvh, 6.25rem)
+  );
+  padding-bottom: var(--space-4);
+  /* Extra space between “Dingho” block and CTA */
+  gap: var(--space-12);
+}
+
+/*
+  Grid column width = intrinsic “Dingho” width; tagline is stretched to that
+  width; letter-spacing is set in JS to match total width to the mark.
+*/
+.hero__titles {
+  display: grid;
+  grid-template-columns: max-content;
+  justify-items: stretch;
+  row-gap: var(--space-4);
+  width: max-content;
+  max-width: min(94vw, 30rem);
+  margin: 0;
+  text-align: center;
+  color: var(--color-fg);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.hero__tagline {
+  font-family: var(--font-stack);
+  font-size: clamp(1.0625rem, 4.2vw, 1.375rem);
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+  margin: 0;
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  display: block;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.hero__mark {
+  font-family: var(--font-hero-script);
+  font-size: clamp(3.5rem, 17vw, 6.75rem);
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 0;
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: center;
+  letter-spacing: 0.02em;
+}
+
+/* Primary CTA — monochrome, ≥44pt tap target, subtle depth (HIG-friendly) */
+.hero__cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--min-tap-target);
+  padding-inline: var(--space-8);
+  padding-block: var(--space-3);
+  border-radius: 9999px;
+  border: var(--hero-cta-border-w) solid var(--color-fg);
+  background-color: color-mix(in srgb, var(--color-bg) 92%, var(--color-bg-elevated));
+  color: var(--color-fg);
+  font-family: var(--font-stack);
+  font-size: var(--font-size-callout);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hero__cta:hover {
+  background-color: var(--color-fg);
+  color: var(--color-bg);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+.hero__cta:focus-visible {
+  outline: var(--hero-cta-border-w) solid var(--color-fg);
+  outline-offset: 4px;
+}
+
+.hero__cta:active {
+  transform: scale(0.98);
+}
+
+/* ——— Shared section header (FAQ, programs, about) ——— */
+
+.section-intro {
+  text-align: center;
+  margin-bottom: clamp(var(--space-8), 4vw, var(--space-10));
+}
+
+.section-intro--compact {
+  margin-bottom: clamp(var(--space-6), 3vw, var(--space-8));
+}
+
+.section-intro__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.65rem;
+  margin-bottom: var(--space-4);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-fg-secondary);
+  border: 1px solid var(--color-separator);
+  border-radius: 999px;
+  background-color: color-mix(in srgb, var(--color-bg-elevated) 70%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.section-intro__title {
+  margin: 0 0 var(--space-3);
+  font-size: clamp(1.65rem, 4.2vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-tight);
+}
+
+.section-intro__lead {
+  margin: 0 auto;
+  max-width: 36rem;
+  font-size: clamp(1rem, 2.2vw, 1.0625rem);
+  line-height: var(--line-height-body);
+  color: var(--color-fg-secondary);
+}
+

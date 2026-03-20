@@ -1,0 +1,288 @@
+/*
+  About section: hero spans three text rows (~⅓ width); fan row full width below.
+*/
+
+.about-dinghao {
+  scroll-margin-top: calc(var(--header-height) + env(safe-area-inset-top, 0px) + var(--space-2));
+  width: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  /* Unified aspect for bottom trio (desktop fan) */
+  --about-fan-aspect: 4 / 3;
+  /* Per-card depth (fan + mobile stacks) */
+  --about-fan-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 8px 20px rgba(0, 0, 0, 0.1),
+    0 20px 44px rgba(0, 0, 0, 0.12),
+    0 36px 72px rgba(0, 0, 0, 0.08);
+  --about-fan-shadow-strong:
+    0 3px 6px rgba(0, 0, 0, 0.08),
+    0 10px 26px rgba(0, 0, 0, 0.12),
+    0 24px 52px rgba(0, 0, 0, 0.14),
+    0 42px 84px rgba(0, 0, 0, 0.1);
+}
+
+.about-dinghao__inner {
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-inline: max(var(--space-4), env(safe-area-inset-left))
+    max(var(--space-4), env(safe-area-inset-right));
+  padding-block: clamp(var(--space-12), 8dvh, var(--space-16));
+  box-sizing: border-box;
+}
+
+.about-dinghao__grid {
+  display: grid;
+  /* Text ~60%, image ~40% (slightly wider than 2:1); hero spans all three text rows */
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  grid-template-areas:
+    "b1 hero"
+    "b2 hero"
+    "b3 hero"
+    "fan fan";
+  column-gap: clamp(1.25rem, 4vw, 2.75rem);
+  row-gap: clamp(var(--space-8), 4vw, var(--space-10));
+  align-items: start;
+}
+
+.about-dinghao__block--1 {
+  grid-area: b1;
+}
+
+.about-dinghao__block--2 {
+  grid-area: b2;
+}
+
+.about-dinghao__block--3 {
+  grid-area: b3;
+}
+
+/*
+ * Spans b1 + b2 + b3 rows: height matches entire left column (three sections).
+ * Absolute img fill keeps cover crop stable.
+ */
+.about-dinghao__hero {
+  position: relative;
+  grid-area: hero;
+  margin: 0;
+  align-self: stretch;
+  width: 100%;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 0.85rem;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    0 6px 16px rgba(0, 0, 0, 0.07),
+    0 20px 48px rgba(0, 0, 0, 0.1);
+}
+
+.about-dinghao__title {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-4);
+  font-size: clamp(1.125rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: var(--line-height-tight);
+}
+
+.about-dinghao__heading-mark {
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.45em;
+  background-color: var(--color-fg);
+}
+
+.about-dinghao__body {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-fg-secondary);
+}
+
+.about-dinghao__body p {
+  margin: 0 0 var(--space-4);
+}
+
+.about-dinghao__body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Shared frame; no forced square — context sets dimensions */
+.about-dinghao__photo {
+  display: block;
+  border-radius: inherit;
+  box-shadow: none;
+}
+
+.about-dinghao__hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  border-radius: inherit;
+}
+
+.about-dinghao__cta {
+  margin-top: var(--space-6);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.65rem 1.15rem;
+  border-radius: 0.75rem;
+  font-size: var(--font-size-footnote);
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: var(--color-fg);
+  border: 1px solid color-mix(in srgb, var(--color-fg) 88%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.about-dinghao__cta:hover {
+  opacity: 0.92;
+}
+
+.about-dinghao__cta:active {
+  transform: scale(0.99);
+}
+
+.about-dinghao__cta:focus-visible {
+  outline: 2px solid var(--color-fg);
+  outline-offset: 3px;
+}
+
+/* Bottom trio: flex fills full row width; overlap keeps stack; identical aspect-ratio */
+.about-dinghao__fan {
+  grid-area: fan;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-block: var(--space-10) var(--space-8);
+  padding-inline: 0;
+  overflow: visible;
+}
+
+.about-dinghao__fan-img {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 0;
+  aspect-ratio: var(--about-fan-aspect);
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.9rem;
+  box-shadow: var(--about-fan-shadow);
+}
+
+.about-dinghao__fan-img--left {
+  transform: rotate(-5.5deg);
+  z-index: 1;
+  margin-right: -11%;
+}
+
+.about-dinghao__fan-img--center {
+  transform: scale(1.06) translateY(-4%);
+  z-index: 3;
+  margin-inline: -11%;
+  box-shadow: var(--about-fan-shadow-strong);
+}
+
+.about-dinghao__fan-img--right {
+  transform: rotate(5.5deg);
+  z-index: 2;
+  margin-left: -11%;
+}
+
+@media (max-width: 47.99rem) {
+  .about-dinghao__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    row-gap: unset;
+  }
+
+  .about-dinghao__block--1 {
+    order: 1;
+    margin-bottom: var(--space-8);
+  }
+
+  .about-dinghao__block--2 {
+    order: 2;
+    margin-bottom: var(--space-8);
+  }
+
+  .about-dinghao__block--3 {
+    order: 3;
+    margin-bottom: var(--space-8);
+  }
+
+  .about-dinghao__hero {
+    position: relative;
+    order: 4;
+    align-self: stretch;
+    width: 100%;
+    height: auto;
+    min-height: 12rem;
+    overflow: visible;
+    margin-bottom: var(--space-8);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.05),
+      0 6px 16px rgba(0, 0, 0, 0.07),
+      0 20px 48px rgba(0, 0, 0, 0.1);
+  }
+
+  .about-dinghao__hero-img {
+    position: static;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .about-dinghao__fan {
+    order: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-6);
+    padding-block: 0;
+    padding-inline: var(--space-3);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .about-dinghao__fan-img,
+  .about-dinghao__fan-img--left,
+  .about-dinghao__fan-img--center,
+  .about-dinghao__fan-img--right {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    max-width: 100%;
+    aspect-ratio: auto;
+    transform: none;
+    margin: 0;
+    box-shadow: var(--about-fan-shadow);
+  }
+
+  .about-dinghao__fan-img--center {
+    box-shadow: var(--about-fan-shadow-strong);
+  }
+}

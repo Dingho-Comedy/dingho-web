@@ -1,0 +1,238 @@
+/*
+  Apple Music playlist promo: spinning CD + marketing-style black lockup (no off-brand orange).
+*/
+
+.apple-music {
+  scroll-margin-top: calc(var(--header-height) + env(safe-area-inset-top, 0px) + var(--space-2));
+  width: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+.apple-music__inner {
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-inline: max(var(--space-4), env(safe-area-inset-left))
+    max(var(--space-4), env(safe-area-inset-right));
+  padding-block: clamp(var(--space-12), 7dvh, var(--space-16));
+  box-sizing: border-box;
+  /* Shrink-wrapped columns + center the whole block (avoids a wide empty 1fr column on the right) */
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(var(--space-8), 4vw, var(--space-12));
+  width: 100%;
+}
+
+/* Larger disc so the row feels balanced (less empty space on the right) */
+.apple-music-cd {
+  width: clamp(18.5rem, 42vw, 28rem);
+  aspect-ratio: 1;
+  filter: drop-shadow(0 10px 26px rgba(0, 0, 0, 0.12)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.06));
+}
+
+.apple-music-cd__disc {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 3.75%;
+  box-sizing: border-box;
+  background: conic-gradient(
+    from 200deg,
+    #6e6e73,
+    #aeaeb2,
+    #e5e5ea,
+    #d1d1d6,
+    #8e8e93,
+    #636366,
+    #a1a1a6,
+    #6e6e73
+  );
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+    inset 0 -3px 10px rgba(0, 0, 0, 0.18);
+  position: relative;
+  animation: apple-music-cd-spin 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apple-music-cd__disc {
+    animation: none;
+  }
+}
+
+@keyframes apple-music-cd-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.apple-music-cd__label {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fbfbfd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.apple-music-cd__img {
+  width: 86%;
+  height: 86%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  border-radius: 2px;
+}
+
+/* CD spindle — sits above artwork like a real disc */
+.apple-music-cd__spindle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 9%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 32%, #48484a, #0a0a0a 55%, #1c1c1e);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.apple-music__copy {
+  min-width: 0;
+  justify-self: start;
+  width: max-content;
+  max-width: min(36rem, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.apple-music__title {
+  margin: 0;
+  font-size: clamp(1.65rem, 3.8vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-tight);
+}
+
+.apple-music__subtitle {
+  margin: 0;
+  font-size: clamp(1.0625rem, 2vw, 1.1875rem);
+  line-height: var(--line-height-body);
+  color: var(--color-fg-secondary);
+  max-width: none;
+}
+
+/*
+ * Apple Music–style lockup: black field, white type (aligned with official badge / HIG contrast).
+ * Not a pixel copy of Apple artwork — structural parity only.
+ */
+.apple-music__btn {
+  margin-top: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: var(--min-tap-target);
+  padding: 0.55rem 1.15rem 0.55rem 0.95rem;
+  box-sizing: border-box;
+  border-radius: 0.65rem;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  transition: opacity 0.15s ease, transform 0.15s ease, background-color 0.15s ease;
+}
+
+.apple-music__btn:hover {
+  opacity: 0.92;
+}
+
+.apple-music__btn:active {
+  transform: scale(0.99);
+}
+
+.apple-music__btn:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 3px;
+}
+
+.apple-music__btn-logo {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: auto;
+  aspect-ratio: 814 / 1000;
+  display: block;
+  overflow: visible;
+}
+
+.apple-music__btn-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.18;
+  text-align: left;
+}
+
+.apple-music__btn-kicker {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.92;
+}
+
+.apple-music__btn-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 47.99rem) {
+  .apple-music__inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .apple-music__visual {
+    justify-self: center;
+  }
+
+  /* Override desktop `justify-self: start` + `max-content` so the column centers */
+  .apple-music__copy {
+    justify-self: center;
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .apple-music__title,
+  .apple-music__subtitle {
+    text-align: center;
+    width: 100%;
+  }
+
+  .apple-music__btn {
+    align-self: center;
+  }
+
+  .apple-music__btn-text {
+    align-items: center;
+    text-align: center;
+  }
+
+  .apple-music-cd {
+    width: min(22rem, 88vw);
+  }
+}

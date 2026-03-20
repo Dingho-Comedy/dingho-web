@@ -1,0 +1,29 @@
+[
+  {
+    "date": "2025-03-06",
+    "time": "19:00",
+    "name": "顶好开放麦",
+    "address": "Somerville Music Spaces",
+    "image": "",
+    "price": 12,
+    "ticketUrl": "https://example.com/tickets/open-mic-0306"
+  },
+  {
+    "date": "2025-03-13",
+    "time": "20:00",
+    "name": "中文脱口秀专场",
+    "address": "Cambridge 小剧场",
+    "image": "",
+    "price": 25.5,
+    "ticketUrl": "https://example.com/tickets/standup-0313"
+  },
+  {
+    "date": "2025-03-20",
+    "time": "19:30",
+    "name": "新人练习场",
+    "address": "Somerville Music Spaces",
+    "image": "",
+    "price": 10,
+    "ticketUrl": "https://example.com/tickets/newcomer-0320"
+  }
+]
