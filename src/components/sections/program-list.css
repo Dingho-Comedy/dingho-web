@@ -111,7 +111,7 @@
   }
 }
 
-/* Vertical dashed axis */
+/* Vertical dashed axis (desktop only — mobile stacks date + card) */
 .program-timeline::before {
   content: "";
   position: absolute;
@@ -123,24 +123,11 @@
   transform: translateX(-50%);
 }
 
-@media (max-width: 47.99rem) {
-  .program-timeline::before {
-    left: calc(0.5rem + 4.25rem + 0.5rem + 0.625rem);
-  }
-}
-
 .program-row {
   position: relative;
   display: grid;
   grid-template-columns: 5.5rem 1.5rem minmax(0, 1fr);
   gap: 0 var(--space-3);
-}
-
-@media (max-width: 47.99rem) {
-  .program-row {
-    grid-template-columns: 4.25rem 1.25rem minmax(0, 1fr);
-    gap: 0 var(--space-2);
-  }
 }
 
 .program-row__date {
@@ -311,4 +298,43 @@ a.program-card--link:focus-visible {
   height: 100%;
   min-height: 0;
   background: linear-gradient(145deg, #ececf0, #dedee3);
+}
+
+/*
+ * Mobile: date sits in the same column as the card (above it) so the card spans
+ * full rail width — avoids a fixed date + dot column shrinking the card.
+ */
+@media (max-width: 47.99rem) {
+  .program-timeline {
+    padding-left: 0;
+  }
+
+  .program-timeline::before {
+    display: none;
+  }
+
+  .program-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+
+  .program-row__node {
+    display: none;
+  }
+
+  .program-row__date {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: var(--space-2) var(--space-3);
+    text-align: left;
+    padding-top: 0;
+  }
+
+  .program-row__weekday {
+    margin-top: 0;
+  }
 }
