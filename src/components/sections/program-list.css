@@ -17,7 +17,7 @@
   width: 100%;
   max-width: 100%;
   /* Prevent long venue/title strings from widening the page on narrow viewports */
-  overflow-x: clip;
+  overflow-x: hidden;
   background-color: var(--program-bg);
   color: var(--program-text);
 }

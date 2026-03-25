@@ -5,6 +5,8 @@
 .about-dinghao {
   scroll-margin-top: calc(var(--header-height) + env(safe-area-inset-top, 0px) + var(--space-2));
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   background-color: var(--color-bg);
   color: var(--color-fg);
   /* Unified aspect for bottom trio (desktop fan) */
@@ -24,6 +26,7 @@
 
 .about-dinghao__inner {
   max-width: 68rem;
+  width: 100%;
   margin-inline: auto;
   padding-inline: max(var(--space-4), env(safe-area-inset-left))
     max(var(--space-4), env(safe-area-inset-right));
