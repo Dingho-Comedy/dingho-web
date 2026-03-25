@@ -1,29 +1,29 @@
 [
   {
-    "date": "2025-03-06",
+    "date": "2026-03-30",
+    "time": "20:00",
+    "name": "顶好读稿会&工作坊",
+    "address": "Zoom 线上会议",
+    "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,background=white,quality=75,width=400,height=400/gallery-images/x4/232b7986-33f1-4753-928d-84910cd55dd8.png",
+    "price": 0.00,
+    "ticketUrl": "https://luma.com/4bqsx78e"
+  },
+  {
+    "date": "2026-04-03",
     "time": "19:00",
     "name": "顶好开放麦",
-    "address": "Somerville Music Spaces",
-    "image": "",
-    "price": 12,
-    "ticketUrl": "https://example.com/tickets/open-mic-0306"
+    "address": "Somerville Music Space",
+    "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,background=white,quality=75,width=400,height=400/event-covers/ug/ece28902-c149-4632-9609-a5aab8f46880.png",
+    "price": 6.28,
+    "ticketUrl": "https://luma.com/yb1rm79x"
   },
   {
-    "date": "2025-03-13",
-    "time": "20:00",
-    "name": "中文脱口秀专场",
-    "address": "Cambridge 小剧场",
-    "image": "",
-    "price": 25.5,
-    "ticketUrl": "https://example.com/tickets/standup-0313"
-  },
-  {
-    "date": "2025-03-20",
-    "time": "19:30",
-    "name": "新人练习场",
-    "address": "Somerville Music Spaces",
-    "image": "",
-    "price": 10,
-    "ticketUrl": "https://example.com/tickets/newcomer-0320"
+    "date": "2026-04-17",
+    "time": "19:00",
+    "name": "顶好开放麦",
+    "address": "Somerville Music Space",
+    "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,background=white,quality=75,width=400,height=400/event-covers/ug/ece28902-c149-4632-9609-a5aab8f46880.png",
+    "price": 6.28,
+    "ticketUrl": "https://luma.com/9f74sfde"
   }
 ]

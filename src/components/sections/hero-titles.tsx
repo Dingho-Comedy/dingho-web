@@ -1,14 +1,14 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
-
-const TAGLINE = "波士顿首家中文喜剧俱乐部";
+import { useHomeMessages } from "@/i18n/messages";
 
 /**
- * Matches Chinese tagline total width to the "Dingho" mark via letter-spacing
- * (binary search; re-runs on resize and after webfonts load).
+ * Matches tagline total width to the "Dingho" mark via letter-spacing
+ * (binary search; re-runs on resize, after webfonts load, and when locale/tagline changes).
  */
 export function HeroTitles() {
+  const { heroTagline } = useHomeMessages();
   const titlesRef = useRef<HTMLHeadingElement>(null);
   const taglineRef = useRef<HTMLSpanElement>(null);
   const markRef = useRef<HTMLSpanElement>(null);
@@ -72,7 +72,7 @@ export function HeroTitles() {
       ro.disconnect();
       window.removeEventListener("resize", run);
     };
-  }, []);
+  }, [heroTagline]);
 
   return (
     <h1 id="hero-title" ref={titlesRef} className="hero__titles">
@@ -81,7 +81,7 @@ export function HeroTitles() {
         className="hero__tagline"
         style={letterSpacingPx !== null ? { letterSpacing: `${letterSpacingPx}px` } : undefined}
       >
-        {TAGLINE}
+        {heroTagline}
       </span>
       <span ref={markRef} className="hero__mark">
         Dingho

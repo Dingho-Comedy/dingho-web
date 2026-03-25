@@ -1,9 +1,15 @@
+import { useLocale } from "@/contexts/locale-context";
+import { useHomeMessages } from "@/i18n/messages";
 import { HeroTitles } from "@/components/sections/hero-titles";
 
 /**
  * Full-viewport hero: responsive background treatment + brand titles.
  */
 export function HeroSection() {
+  const locale = useLocale();
+  const m = useHomeMessages();
+  const basePath = locale === "en" ? "/en" : "";
+
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero__bg" aria-hidden />
@@ -16,8 +22,8 @@ export function HeroSection() {
       <div className="hero__scrim" aria-hidden />
       <div className="hero__inner">
         <HeroTitles />
-        <a className="hero__cta" href="#program">
-          点我购票
+        <a className="hero__cta" href={`${basePath}#program`}>
+          {m.heroCta}
         </a>
       </div>
     </section>

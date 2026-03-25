@@ -1,4 +1,6 @@
 import { PROGRAM_LIST } from "@/data/program-list-from-json";
+import { useLocale, type Locale } from "@/contexts/locale-context";
+import { useHomeMessages } from "@/i18n/messages";
 import { appendCurrentPageUtmParams } from "@/lib/append-utm-to-url";
 import type { ProgramListItem } from "@/types/program";
 import "./program-list.css";
@@ -35,20 +37,26 @@ function formatUsdPrice(amount: number): string {
   }).format(amount);
 }
 
-function buildTicketAriaLabel(item: ProgramListItem): string {
-  const parts = [
-    `购票：${item.title}`,
-    item.priceUsd !== undefined ? formatUsdPrice(item.priceUsd) : null,
-    "已包含所有手续费，新标签页打开",
-  ].filter(Boolean);
-  return parts.join("，");
+function getProgramDisplayTitle(item: ProgramListItem, locale: Locale): string {
+  if (locale === "en" && item.titleEn?.trim()) return item.titleEn.trim();
+  return item.title;
 }
 
-function ProgramCard({ item }: { item: ProgramListItem }) {
+function ProgramCard({
+  item,
+  displayTitle,
+}: {
+  item: ProgramListItem;
+  displayTitle: string;
+}) {
+  const m = useHomeMessages();
+  const priceText = item.priceUsd !== undefined ? formatUsdPrice(item.priceUsd) : "";
+  const ariaLabel = m.programTicketAria(displayTitle, item.priceUsd, priceText);
+
   const body = (
     <>
       <div className="program-card__main">
-        <h3 className="program-card__title">{item.title}</h3>
+        <h3 className="program-card__title">{displayTitle}</h3>
         <div className="program-card__meta">
           <div className="program-card__meta-row">
             <LocationIcon />
@@ -86,7 +94,7 @@ function ProgramCard({ item }: { item: ProgramListItem }) {
         href={appendCurrentPageUtmParams(item.ticketUrl)}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={buildTicketAriaLabel(item)}
+        aria-label={ariaLabel}
       >
         {body}
       </a>
@@ -97,16 +105,21 @@ function ProgramCard({ item }: { item: ProgramListItem }) {
 }
 
 function ProgramRow({ item }: { item: ProgramListItem }) {
+  const locale = useLocale();
+  const displayTitle = getProgramDisplayTitle(item, locale);
+  const dateLabel = locale === "en" ? item.dateLabelEn : item.dateLabel;
+  const weekdayLabel = locale === "en" ? item.weekdayLabelEn : item.weekdayLabel;
+
   return (
     <div className="program-row">
       <div className="program-row__date">
-        <span className="program-row__day">{item.dateLabel}</span>
-        <span className="program-row__weekday">{item.weekdayLabel}</span>
+        <span className="program-row__day">{dateLabel}</span>
+        <span className="program-row__weekday">{weekdayLabel}</span>
       </div>
       <div className="program-row__node">
         <span className="program-row__dot" />
       </div>
-      <ProgramCard item={item} />
+      <ProgramCard item={item} displayTitle={displayTitle} />
     </div>
   );
 }
@@ -115,6 +128,8 @@ function ProgramRow({ item }: { item: ProgramListItem }) {
  * Static timeline: side art edge-aligned; list vertically centered beside art.
  */
 export function ProgramListSection() {
+  const m = useHomeMessages();
+
   return (
     <section
       id="program"
@@ -127,13 +142,11 @@ export function ProgramListSection() {
         </div>
         <div className="program-section__center">
           <header className="section-intro section-intro--compact">
-            <span className="section-intro__badge">SHOWS</span>
+            <span className="section-intro__badge">{m.programBadge}</span>
             <h2 id="program-heading" className="section-intro__title">
-              近期节目
+              {m.programHeading}
             </h2>
-            <p className="section-intro__lead">
-              现场演出安排与购票入口；更多规则与说明请见页面底部「常见问题」。
-            </p>
+            <p className="section-intro__lead">{m.programLead}</p>
           </header>
           <div className="program-timeline" role="list">
             {PROGRAM_LIST.map((item) => (

@@ -204,6 +204,52 @@ body {
   }
 }
 
+.site-header__lang {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-inline-start: clamp(0.4rem, 1.5vw, 0.75rem);
+  flex-shrink: 0;
+  font-size: var(--font-size-footnote);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.site-header__lang-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  min-width: 2rem;
+  padding: 0.2rem 0.35rem;
+  color: var(--color-fg-secondary);
+  text-decoration: none;
+  border-radius: 0.35rem;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.site-header__lang-link:hover {
+  color: var(--color-fg);
+  background-color: color-mix(in srgb, var(--color-fg) 6%, transparent);
+}
+
+.site-header__lang-link--active {
+  color: var(--color-fg);
+  background-color: color-mix(in srgb, var(--color-fg) 10%, transparent);
+}
+
+.site-header__lang-link:focus-visible {
+  outline: 2px solid var(--color-fg);
+  outline-offset: 2px;
+}
+
+.site-header__lang-sep {
+  color: var(--color-fg-tertiary);
+  user-select: none;
+}
+
 .site-main {
   flex: 1;
   width: 100%;

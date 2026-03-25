@@ -1,4 +1,7 @@
 import { FAQ_ITEMS } from "@/data/faq";
+import { FAQ_ITEMS_EN } from "@/data/faq-en";
+import { useLocale } from "@/contexts/locale-context";
+import { useHomeMessages } from "@/i18n/messages";
 import "./faq-section.css";
 
 function ChevronIcon({ className }: { className?: string }) {
@@ -19,21 +22,23 @@ function ChevronIcon({ className }: { className?: string }) {
  * Single-column FAQ accordion (native details/summary for a11y, no extra deps).
  */
 export function FaqSection() {
+  const locale = useLocale();
+  const m = useHomeMessages();
+  const items = locale === "en" ? FAQ_ITEMS_EN : FAQ_ITEMS;
+
   return (
     <section id="faq" className="faq-section" aria-labelledby="faq-heading">
       <div className="faq-section__inner">
         <div className="section-intro">
-          <span className="section-intro__badge">FAQ</span>
+          <span className="section-intro__badge">{m.faqBadge}</span>
           <h2 id="faq-heading" className="section-intro__title">
-            常见问题
+            {m.faqHeading}
           </h2>
-          <p className="section-intro__lead">
-            为您整理了购票、观演与参与顶好喜剧时的常见疑问。
-          </p>
+          <p className="section-intro__lead">{m.faqLead}</p>
         </div>
 
         <div className="faq-section__panel">
-          {FAQ_ITEMS.map((item) => (
+          {items.map((item) => (
             <details key={item.id} className="faq-item" name="dinghao-faq">
               <summary className="faq-item__summary">
                 <span className="faq-item__question">{item.question}</span>
