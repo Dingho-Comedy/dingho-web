@@ -1,5 +1,8 @@
 import "./site-footer.css";
 
+/** Brand slogan — same on all locales (not translated). */
+const FOOTER_SLOGAN_ZH = "喜剧看顶好 · 生活没烦恼";
+
 /**
  * Brand closing line + copyright. Slogan uses ZCOOL QingKe HuangYou (loaded in index.html).
  * Copyright in content rail; slogan full-bleed, bottom ⅓ cropped on all breakpoints.
@@ -16,7 +19,7 @@ export function SiteFooter() {
       </div>
       <div className="site-footer__slogan-wrap">
         <div className="site-footer__slogan-clip">
-          <p className="site-footer__slogan">喜剧看顶好 · 生活没烦恼</p>
+          <p className="site-footer__slogan">{FOOTER_SLOGAN_ZH}</p>
         </div>
       </div>
     </footer>

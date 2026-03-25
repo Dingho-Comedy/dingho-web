@@ -1,3 +1,4 @@
+import { useHomeMessages } from "@/i18n/messages";
 import "./apple-music-section.css";
 
 const APPLE_MUSIC_PLAYLIST_URL =
@@ -25,6 +26,8 @@ function AppleLogoMonochrome() {
  * Background playlist promo: rotating CD with contained album art + Apple Music–style CTA.
  */
 export function AppleMusicSection() {
+  const m = useHomeMessages();
+
   return (
     <section id="music" className="apple-music" aria-labelledby="apple-music-title">
       <div className="apple-music__inner">
@@ -35,7 +38,7 @@ export function AppleMusicSection() {
                 <img
                   className="apple-music-cd__img"
                   src="/images/album.png"
-                  alt="顶好喜剧专辑封面插画"
+                  alt={m.appleAlt}
                   width={512}
                   height={512}
                   decoding="async"
@@ -48,15 +51,15 @@ export function AppleMusicSection() {
 
         <div className="apple-music__copy">
           <h2 id="apple-music-title" className="apple-music__title">
-            顶好开笑序曲
+            {m.appleTitle}
           </h2>
-          <p className="apple-music__subtitle">顶好喜剧开场播放列表</p>
+          <p className="apple-music__subtitle">{m.appleSubtitle}</p>
           <a
             className="apple-music__btn"
             href={APPLE_MUSIC_PLAYLIST_URL}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="在 Apple Music 打开顶好开笑序曲播放列表"
+            aria-label={m.appleBtnAria}
           >
             <AppleLogoMonochrome />
             <span className="apple-music__btn-text">

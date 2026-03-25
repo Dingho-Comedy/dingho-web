@@ -3,8 +3,13 @@ export interface ProgramListItem {
   id: string;
   dateLabel: string;
   weekdayLabel: string;
+  /** English labels for `/en` */
+  dateLabelEn: string;
+  weekdayLabelEn: string;
   timeLabel: string;
   title: string;
+  /** From `nameEn` in JSON; shown on English site when set */
+  titleEn?: string;
   venue: string;
   /** Optional poster URL; empty in JSON → placeholder block */
   imageSrc?: string;

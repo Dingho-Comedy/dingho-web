@@ -6,6 +6,8 @@ export interface ProgramJsonRow {
   date: string;
   time: string;
   name: string;
+  /** English show title for the `/en` site */
+  nameEn?: string;
   address: string;
   image: string;
   /** Price in USD, e.g. 15.99 → shown as $15.99 */
@@ -15,6 +17,8 @@ export interface ProgramJsonRow {
 }
 
 const WEEKDAYS_ZH = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+const WEEKDAYS_EN = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const MONTHS_EN_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] as const;
 
 function parseLocalDateParts(isoDate: string): { y: number; m: number; d: number } | null {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate.trim());
@@ -53,9 +57,22 @@ function toDisplayDateLabels(isoDate: string): { dateLabel: string; weekdayLabel
   };
 }
 
+function toDisplayDateLabelsEn(isoDate: string): { dateLabel: string; weekdayLabel: string } | null {
+  const dp = parseLocalDateParts(isoDate);
+  if (!dp) return null;
+  const dt = new Date(dp.y, dp.m - 1, dp.d);
+  const month = MONTHS_EN_SHORT[dp.m - 1];
+  if (!month) return null;
+  return {
+    dateLabel: `${month} ${dp.d}`,
+    weekdayLabel: WEEKDAYS_EN[dt.getDay()] ?? "",
+  };
+}
+
 function rowToItem(row: ProgramJsonRow, index: number): ProgramListItem | null {
   const labels = toDisplayDateLabels(row.date);
-  if (!labels) return null;
+  const labelsEn = toDisplayDateLabelsEn(row.date);
+  if (!labels || !labelsEn) return null;
   const tp = parseTimeParts(row.time);
   if (!tp) return null;
   const timeLabel = `${String(tp.hh).padStart(2, "0")}:${String(tp.mm).padStart(2, "0")}`;
@@ -67,13 +84,17 @@ function rowToItem(row: ProgramJsonRow, index: number): ProgramListItem | null {
   const priceUsd =
     typeof priceRaw === "number" && Number.isFinite(priceRaw) ? priceRaw : undefined;
   const ticketUrl = row.ticketUrl?.trim() || undefined;
+  const titleEnRaw = row.nameEn?.trim();
 
   return {
     id,
     dateLabel: labels.dateLabel,
     weekdayLabel: labels.weekdayLabel,
+    dateLabelEn: labelsEn.dateLabel,
+    weekdayLabelEn: labelsEn.weekdayLabel,
     timeLabel,
     title: row.name.trim(),
+    titleEn: titleEnRaw || undefined,
     venue: row.address.trim(),
     imageSrc: row.image.trim() || undefined,
     priceUsd,
