@@ -7,7 +7,6 @@
   border-top: 1px solid var(--color-separator);
   background-color: var(--color-bg);
   color: var(--color-fg);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .site-footer__inner {

@@ -149,11 +149,17 @@ export function ProgramListSection() {
             <p className="section-intro__lead">{m.programLead}</p>
           </header>
           <div className="program-timeline" role="list">
-            {PROGRAM_LIST.map((item) => (
-              <div key={item.id} className="program-timeline__item" role="listitem">
-                <ProgramRow item={item} />
+            {PROGRAM_LIST.length > 0 ? (
+              PROGRAM_LIST.map((item) => (
+                <div key={item.id} className="program-timeline__item" role="listitem">
+                  <ProgramRow item={item} />
+                </div>
+              ))
+            ) : (
+              <div className="program-empty-state">
+                <p className="program-empty-state__text">敬请期待</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
         <div className="program-section__rail program-section__rail--right" aria-hidden>
