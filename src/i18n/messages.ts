@@ -20,7 +20,6 @@ export interface HomeMessages {
   programTicketAria: (title: string, priceUsd: number | undefined, priceText: string) => string;
   aboutBadge: string;
   aboutHeading: string;
-  aboutLead: string;
   aboutBlock1: string;
   aboutVolunteersTitle: string;
   aboutVolunteersBody: readonly string[];
@@ -35,9 +34,14 @@ export interface HomeMessages {
   faqBadge: string;
   faqHeading: string;
   faqLead: string;
+  /** Region label for the language control */
   langSwitchAria: string;
-  langZh: string;
-  langEn: string;
+  /** Visible label for the only button (Chinese site → link to English) */
+  langSwitchToEnLabel: string;
+  langSwitchToEnAria: string;
+  /** Visible label for the only button (English site → link to Chinese) */
+  langSwitchToZhLabel: string;
+  langSwitchToZhAria: string;
 }
 
 const NAV_ZH: readonly NavItemCopy[] = [
@@ -74,8 +78,6 @@ const MESSAGES: Record<Locale, HomeMessages> = {
         .join("，"),
     aboutBadge: "ABOUT",
     aboutHeading: "关于顶好喜剧",
-    aboutLead:
-      "充满激情的脱口秀社区，为爱好者与表演者提供开放、包容的舞台；幽默连接彼此，每个人都能在这里绽放自我。",
     aboutBlock1:
       "顶好喜剧是一个充满激情的脱口秀社区，致力于为喜剧爱好者和表演者创造一个开放、包容的平台。我们相信幽默是连接人们的桥梁，能够打破隔阂，传递快乐和洞察。从业余选手到专业喜剧人，每个人都有机会在我们的舞台上绽放自我。",
     aboutVolunteersTitle: "我们的志愿者们",
@@ -98,8 +100,10 @@ const MESSAGES: Record<Locale, HomeMessages> = {
     faqHeading: "常见问题",
     faqLead: "为您整理了购票、观演与参与顶好喜剧时的常见疑问。",
     langSwitchAria: "语言",
-    langZh: "中文",
-    langEn: "EN",
+    langSwitchToEnLabel: "En",
+    langSwitchToEnAria: "切换到英文版",
+    langSwitchToZhLabel: "中文",
+    langSwitchToZhAria: "切换到中文版",
   },
   en: {
     metaTitle: "Dinghao Comedy",
@@ -123,8 +127,6 @@ const MESSAGES: Record<Locale, HomeMessages> = {
         .join(". "),
     aboutBadge: "ABOUT",
     aboutHeading: "About Dinghao Comedy",
-    aboutLead:
-      "A passionate stand-up community offering an open, inclusive stage for fans and performers—humor connects us, and everyone can shine here.",
     aboutBlock1:
       "Dinghao Comedy is a passionate stand-up community built for comedy lovers and performers alike—an open, inclusive platform where humor bridges people, breaks barriers, and shares joy and insight. From first-timers to pros, everyone can take the stage and shine.",
     aboutVolunteersTitle: "Our volunteers",
@@ -147,8 +149,10 @@ const MESSAGES: Record<Locale, HomeMessages> = {
     faqHeading: "FAQ",
     faqLead: "Ticketing, attending shows, and getting involved with Dinghao Comedy.",
     langSwitchAria: "Language",
-    langZh: "中文",
-    langEn: "EN",
+    langSwitchToEnLabel: "En",
+    langSwitchToEnAria: "Switch to English",
+    langSwitchToZhLabel: "中文",
+    langSwitchToZhAria: "Switch to Chinese site",
   },
 };
 

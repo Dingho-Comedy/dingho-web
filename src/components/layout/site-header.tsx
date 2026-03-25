@@ -7,26 +7,30 @@ function LanguageSwitcher() {
   const locale = useLocale();
   const m = useHomeMessages();
 
+  if (locale === "zh") {
+    return (
+      <div className="site-header__lang" role="navigation" aria-label={m.langSwitchAria}>
+        <Link
+          className="site-header__lang-link"
+          to={{ pathname: "/en", search, hash }}
+          lang="en"
+          aria-label={m.langSwitchToEnAria}
+        >
+          {m.langSwitchToEnLabel}
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="site-header__lang" role="navigation" aria-label={m.langSwitchAria}>
       <Link
-        className={`site-header__lang-link${locale === "zh" ? " site-header__lang-link--active" : ""}`}
+        className="site-header__lang-link"
         to={{ pathname: "/", search, hash }}
         lang="zh-Hans"
-        aria-current={locale === "zh" ? "page" : undefined}
+        aria-label={m.langSwitchToZhAria}
       >
-        {m.langZh}
-      </Link>
-      <span className="site-header__lang-sep" aria-hidden>
-        /
-      </span>
-      <Link
-        className={`site-header__lang-link${locale === "en" ? " site-header__lang-link--active" : ""}`}
-        to={{ pathname: "/en", search, hash }}
-        lang="en"
-        aria-current={locale === "en" ? "page" : undefined}
-      >
-        {m.langEn}
+        {m.langSwitchToZhLabel}
       </Link>
     </div>
   );

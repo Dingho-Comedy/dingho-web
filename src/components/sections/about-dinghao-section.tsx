@@ -30,7 +30,6 @@ export function AboutDinghaoSection() {
           <h2 id="about-dinghao-heading" className="section-intro__title">
             {m.aboutHeading}
           </h2>
-          <p className="section-intro__lead">{m.aboutLead}</p>
         </header>
         <div className="about-dinghao__grid">
           <article className="about-dinghao__block about-dinghao__block--1">

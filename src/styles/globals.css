@@ -150,7 +150,7 @@ body {
 
 .site-header__nav-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-end;
   gap: clamp(0.25rem, 1.5vw, 1rem);
@@ -171,6 +171,7 @@ body {
   color: var(--color-fg);
   text-decoration: none;
   border-radius: 0.45rem;
+  white-space: nowrap;
   transition:
     opacity 0.15s ease,
     background-color 0.15s ease;
@@ -201,6 +202,19 @@ body {
   .site-header__nav-link {
     padding-inline: 0.35rem;
     font-size: 0.9375rem;
+  }
+
+  /* English mobile: same type size as Chinese; only slightly tighter gaps for one row */
+  html[lang="en"] .site-header__inner {
+    gap: 0.5rem;
+  }
+
+  html[lang="en"] .site-header__nav {
+    gap: 0.25rem;
+  }
+
+  html[lang="en"] .site-header__nav-list {
+    gap: clamp(0.2rem, 1.2vw, 0.65rem);
   }
 }
 
@@ -235,19 +249,9 @@ body {
   background-color: color-mix(in srgb, var(--color-fg) 6%, transparent);
 }
 
-.site-header__lang-link--active {
-  color: var(--color-fg);
-  background-color: color-mix(in srgb, var(--color-fg) 10%, transparent);
-}
-
 .site-header__lang-link:focus-visible {
   outline: 2px solid var(--color-fg);
   outline-offset: 2px;
-}
-
-.site-header__lang-sep {
-  color: var(--color-fg-tertiary);
-  user-select: none;
 }
 
 .site-main {
