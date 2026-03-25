@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import { useHomeMessages } from "@/i18n/messages";
+import { SparklesText } from "@/components/ui/sparkles-text";
 
 /**
  * Matches tagline total width to the "Dingho" mark via letter-spacing
@@ -84,7 +85,12 @@ export function HeroTitles() {
         {heroTagline}
       </span>
       <span ref={markRef} className="hero__mark">
-        Dingho
+        <SparklesText 
+          colors={{ first: "#ffd700", second: "#ffed4e" }}
+          sparklesCount={12}
+        >
+          Dingho
+        </SparklesText>
       </span>
     </h1>
   );
