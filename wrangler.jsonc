@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "dinghao-comedy-site",
+  "name": "dingho-web",
   "compatibility_date": "2026-03-25",
   "assets": {
     "directory": "./dist",
