@@ -23,6 +23,34 @@
   padding-bottom: 0;
 }
 
+.site-footer__legal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: var(--space-3);
+}
+
+.site-footer__legal-link {
+  font-family: var(--font-stack);
+  font-size: var(--font-size-footnote);
+  font-weight: 400;
+  color: var(--color-fg-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.site-footer__legal-link:hover {
+  color: var(--color-fg);
+}
+
+.site-footer__legal-sep {
+  display: inline-block;
+  margin-inline: 0.5rem;
+  color: var(--color-fg-tertiary);
+}
+
 .site-footer__copyright {
   margin: 0;
   font-family: var(--font-stack);
