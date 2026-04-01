@@ -14,18 +14,18 @@ interface Sparkle {
   rotation: number;
 }
 
-const COLORS = { first: "#ffd700", second: "#ffed4e" };
-const SPARKLE_COUNT = 22;
+const COLORS = ["#ffd700", "#ffed4e", "#fff5b3", "#ffe066"];
+const SPARKLE_COUNT = 40;
 
 function generateSparkle(id: number): Sparkle {
   return {
     id,
     x: `${Math.random() * 100}%`,
     y: `${Math.random() * 100}%`,
-    color: Math.random() > 0.5 ? COLORS.first : COLORS.second,
-    delay: Math.random() * 8,
-    scale: Math.random() * 0.4 + 0.4,
-    lifespan: Math.random() * 3 + 2.5,
+    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    delay: Math.random() * 6,
+    scale: Math.random() * 0.6 + 0.6,
+    lifespan: Math.random() * 2.5 + 2,
     rotation: Math.random() * 360,
   };
 }
@@ -46,7 +46,7 @@ export function HeroSparkles() {
         }
         return prev;
       });
-    }, 1200);
+    }, 800);
 
     return () => clearInterval(interval);
   }, []);
@@ -69,28 +69,28 @@ export function HeroSparkles() {
             position: "absolute",
             left: s.x,
             top: s.y,
-            width: "clamp(14px, 2.2vw, 30px)",
-            height: "clamp(14px, 2.2vw, 30px)",
+            width: "clamp(20px, 3.5vw, 48px)",
+            height: "clamp(20px, 3.5vw, 48px)",
           }}
           viewBox="0 0 160 160"
           initial={{ opacity: 0, scale: 0, rotate: s.rotation }}
           animate={{
-            opacity: [0, 0.5, 0.7, 0.5, 0],
-            scale: [0, 0.6, s.scale, 0.6, 0],
-            rotate: [s.rotation, s.rotation + 90, s.rotation + 180],
+            opacity: [0, 0.7, 1, 0.7, 0],
+            scale: [0, 0.7, s.scale, 0.7, 0],
+            rotate: [s.rotation, s.rotation + 120, s.rotation + 240],
           }}
           transition={{
             duration: s.lifespan,
             repeat: Infinity,
             delay: s.delay,
             ease: "easeInOut",
-            repeatDelay: Math.random() * 2,
+            repeatDelay: Math.random() * 1.5,
           }}
         >
           <path
             d="M80 0C80 0 84.2846 41.2925 101.496 58.504C118.707 75.7154 160 80 160 80C160 80 118.707 84.2846 101.496 101.496C84.2846 118.707 80 160 80 160C80 160 75.7154 118.707 58.504 101.496C41.2925 84.2846 0 80 0 80C0 80 41.2925 75.7154 58.504 58.504C75.7154 41.2925 80 0 80 0Z"
             fill={s.color}
-            style={{ filter: "drop-shadow(0 0 4px currentColor)" }}
+            style={{ filter: "drop-shadow(0 0 6px currentColor)" }}
           />
         </motion.svg>
       ))}
