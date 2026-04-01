@@ -18,5 +18,15 @@
     "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,background=white,quality=75,width=400,height=400/event-covers/ug/ece28902-c149-4632-9609-a5aab8f46880.png",
     "price": 6.28,
     "ticketUrl": "https://luma.com/9f74sfde"
+  },
+  {
+    "date": "2026-05-01",
+    "time": "14:00",
+    "name": "Karl 费城主打秀《率性之谓》",
+    "nameEn": "Karl's Special \"Be Yourself\"",
+    "address": "Cresse Student Center, Philadelpohia",
+    "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=1,background=white,quality=75,width=400,height=400/event-covers/kq/7186d036-6104-4896-b55f-d6fdf56a5404.png",
+    "price": 21.90,
+    "ticketUrl": "https://luma.com/ppbvcs9c"
   }
 ]
