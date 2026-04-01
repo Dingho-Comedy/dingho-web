@@ -18,9 +18,8 @@
     max(var(--space-4), env(safe-area-inset-right));
   padding-block: clamp(var(--space-12), 7dvh, var(--space-16));
   box-sizing: border-box;
-  /* Shrink-wrapped columns + center the whole block (avoids a wide empty 1fr column on the right) */
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: minmax(0, auto) minmax(0, auto);
   justify-content: center;
   align-items: center;
   gap: clamp(var(--space-8), 4vw, var(--space-12));
