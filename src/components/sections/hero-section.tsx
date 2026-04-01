@@ -1,6 +1,7 @@
 import { useLocale } from "@/contexts/locale-context";
 import { useHomeMessages } from "@/i18n/messages";
 import { HeroTitles } from "@/components/sections/hero-titles";
+import { HeroSparkles } from "@/components/ui/hero-sparkles";
 
 /**
  * Full-viewport hero: responsive background treatment + brand titles.
@@ -20,6 +21,7 @@ export function HeroSection() {
         <div className="hero__side-fade__wash hero__side-fade__wash--right" />
       </div>
       <div className="hero__scrim" aria-hidden />
+      <HeroSparkles />
       <div className="hero__inner">
         <HeroTitles />
         <a className="hero__cta" href={`${basePath}#program`}>

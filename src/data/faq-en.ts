@@ -6,7 +6,7 @@ export const FAQ_ITEMS_EN: readonly FaqItem[] = [
     id: "ticket-location",
     question: "Where is my ticket after purchase?",
     answer:
-      "After purchase you’ll receive a confirmation email from Dinghao Comedy or LUMA. Add the e-ticket to your phone wallet. At the venue, show the QR code to volunteers at the entrance. If you don’t see the email, check spam/junk, then contact us via WeChat assistant.",
+      "After purchase you’ll receive a confirmation email from Dingho Comedy or LUMA. Add the e-ticket to your phone wallet. At the venue, show the QR code to volunteers at the entrance. If you don’t see the email, check spam/junk, then contact us via WeChat assistant.",
   },
   {
     id: "seating",
@@ -30,6 +30,6 @@ export const FAQ_ITEMS_EN: readonly FaqItem[] = [
     id: "open-mic",
     question: "Can I get on stage?",
     answer:
-      "Yes! Add the Dinghao assistant on WeChat to join the performer group. We offer review sessions, table reads, and open mic slots.",
+      "Yes! Add the Dingho assistant on WeChat to join the performer group. We offer review sessions, table reads, and open mic slots.",
   },
 ] as const;
