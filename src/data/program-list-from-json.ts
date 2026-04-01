@@ -1,5 +1,5 @@
 import programsJson from "./programs.json";
-import type { ProgramListItem } from "@/types/program";
+import type { ProgramListItem, ProgramRegion } from "@/types/program";
 
 /** Raw row in `programs.json` — edit this file only to update the schedule. */
 export interface ProgramJsonRow {
@@ -9,6 +9,8 @@ export interface ProgramJsonRow {
   /** English show title for the `/en` site */
   nameEn?: string;
   address: string;
+  /** Region identifier: "boston" | "philadelphia" | "nyc" */
+  region: ProgramRegion;
   image: string;
   /** Price in USD, e.g. 15.99 → shown as $15.99 */
   price?: number;
@@ -96,6 +98,7 @@ function rowToItem(row: ProgramJsonRow, index: number): ProgramListItem | null {
     title: row.name.trim(),
     titleEn: titleEnRaw || undefined,
     venue: row.address.trim(),
+    region: row.region,
     imageSrc: row.image.trim() || undefined,
     priceUsd,
     ticketUrl,

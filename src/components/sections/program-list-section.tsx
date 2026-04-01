@@ -1,3 +1,5 @@
+import { useState } from "react";
+import * as Tabs from "@radix-ui/react-tabs";
 import { PROGRAM_LIST } from "@/data/program-list-from-json";
 import { useLocale, type Locale } from "@/contexts/locale-context";
 import { useHomeMessages } from "@/i18n/messages";
@@ -129,6 +131,19 @@ function ProgramRow({ item }: { item: ProgramListItem }) {
  */
 export function ProgramListSection() {
   const m = useHomeMessages();
+  const [activeTab, setActiveTab] = useState("all");
+
+  const regionTabs: { value: string; label: string }[] = [
+    { value: "all", label: m.programTabAll },
+    { value: "boston", label: m.programTabBoston },
+    { value: "philadelphia", label: m.programTabPhiladelphia },
+    { value: "nyc", label: m.programTabNyc },
+  ];
+
+  const filteredList =
+    activeTab === "all"
+      ? PROGRAM_LIST
+      : PROGRAM_LIST.filter((item) => item.region === activeTab);
 
   return (
     <section
@@ -148,9 +163,26 @@ export function ProgramListSection() {
             </h2>
             <p className="section-intro__lead">{m.programLead}</p>
           </header>
+          <Tabs.Root
+            className="program-tabs"
+            value={activeTab}
+            onValueChange={setActiveTab}
+          >
+            <Tabs.List className="program-tabs__list" aria-label="Filter by region">
+              {regionTabs.map((tab) => (
+                <Tabs.Trigger
+                  key={tab.value}
+                  className="program-tabs__trigger"
+                  value={tab.value}
+                >
+                  {tab.label}
+                </Tabs.Trigger>
+              ))}
+            </Tabs.List>
+          </Tabs.Root>
           <div className="program-timeline" role="list">
-            {PROGRAM_LIST.length > 0 ? (
-              PROGRAM_LIST.map((item) => (
+            {filteredList.length > 0 ? (
+              filteredList.map((item) => (
                 <div key={item.id} className="program-timeline__item" role="listitem">
                   <ProgramRow item={item} />
                 </div>

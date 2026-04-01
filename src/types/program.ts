@@ -1,3 +1,5 @@
+export type ProgramRegion = "boston" | "philadelphia" | "nyc";
+
 /** Single row after JSON load + sort (for timeline / cards). */
 export interface ProgramListItem {
   id: string;
@@ -11,6 +13,8 @@ export interface ProgramListItem {
   /** From `nameEn` in JSON; shown on English site when set */
   titleEn?: string;
   venue: string;
+  /** Region identifier for tab filtering */
+  region: ProgramRegion;
   /** Optional poster URL; empty in JSON → placeholder block */
   imageSrc?: string;
   /** Ticket price in USD; displayed as $xx.xx */

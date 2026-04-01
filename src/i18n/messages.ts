@@ -34,6 +34,11 @@ export interface HomeMessages {
   faqBadge: string;
   faqHeading: string;
   faqLead: string;
+  /** Tab labels for filtering programs by region */
+  programTabAll: string;
+  programTabBoston: string;
+  programTabPhiladelphia: string;
+  programTabNyc: string;
   /** Region label for the language control */
   langSwitchAria: string;
   /** Visible label for the only button (Chinese site → link to English) */
@@ -63,7 +68,7 @@ const MESSAGES: Record<Locale, HomeMessages> = {
     nav: NAV_ZH,
     navAria: "主导航",
     logoAriaHome: "顶好喜剧 首页",
-    heroTagline: "北美中文喜剧俱乐部",
+    heroTagline: "喜剧看顶好，生活没烦恼",
     heroCta: "点我购票",
     programBadge: "SHOWS",
     programHeading: "近期节目",
@@ -99,6 +104,10 @@ const MESSAGES: Record<Locale, HomeMessages> = {
     faqBadge: "FAQ",
     faqHeading: "常见问题",
     faqLead: "为您整理了购票、观演与参与顶好喜剧时的常见疑问。",
+    programTabAll: "全部",
+    programTabBoston: "波士顿",
+    programTabPhiladelphia: "费城",
+    programTabNyc: "纽约市",
     langSwitchAria: "语言",
     langSwitchToEnLabel: "En",
     langSwitchToEnAria: "切换到英文版",
@@ -111,7 +120,7 @@ const MESSAGES: Record<Locale, HomeMessages> = {
     nav: NAV_EN,
     navAria: "Main navigation",
     logoAriaHome: "Dinghao Comedy home",
-    heroTagline: "North America's Chinese comedy club",
+    heroTagline: "Jokes in Chinese, Laughs with Ease",
     heroCta: "Get tickets",
     programBadge: "SHOWS",
     programHeading: "Upcoming shows",
@@ -148,6 +157,10 @@ const MESSAGES: Record<Locale, HomeMessages> = {
     faqBadge: "FAQ",
     faqHeading: "FAQ",
     faqLead: "Ticketing, attending shows, and getting involved with Dinghao Comedy.",
+    programTabAll: "All",
+    programTabBoston: "Boston",
+    programTabPhiladelphia: "Philadelphia",
+    programTabNyc: "NYC",
     langSwitchAria: "Language",
     langSwitchToEnLabel: "En",
     langSwitchToEnAria: "Switch to English",

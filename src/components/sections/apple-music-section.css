@@ -73,7 +73,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: #fbfbfd;
+  background: #f8f8f8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -229,8 +229,8 @@
   }
 
   .apple-music__btn-text {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .apple-music-cd {
