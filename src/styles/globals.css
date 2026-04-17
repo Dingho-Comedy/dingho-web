@@ -106,7 +106,7 @@ body {
   width: 100%;
   max-width: 100%;
   border-bottom: 1px solid var(--color-separator);
-  background-color: color-mix(in srgb, var(--color-bg) 88%, transparent);
+  background-color: color-mix(in srgb, var(--color-bg) 60%, transparent);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   padding-top: env(safe-area-inset-top);
@@ -583,6 +583,78 @@ body {
 }
 
 .hero__cta:active {
+  transform: scale(0.98);
+}
+
+/* ——— Promo hero (temporary) ——— */
+
+.promo-hero {
+  /* Stretch behind the sticky header so the frosted glass picks up grey */
+  margin-top: calc(-1 * var(--header-height));
+  padding-top: var(--header-height);
+  height: 100dvh;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  background-color: #eaeaea;
+  padding-inline: var(--space-6);
+  padding-bottom: var(--space-6);
+  box-sizing: border-box;
+}
+
+.promo-hero__img {
+  max-width: min(90vw, 42rem);
+  max-height: 68dvh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.promo-hero__cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--min-tap-target);
+  padding-inline: var(--space-10);
+  padding-block: var(--space-3);
+  border-radius: 9999px;
+  border: var(--hero-cta-border-w) solid var(--color-fg);
+  background-color: var(--color-fg);
+  color: var(--color-bg);
+  font-family: var(--font-stack);
+  font-size: var(--font-size-callout);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.promo-hero__cta:hover {
+  background-color: transparent;
+  color: var(--color-fg);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+.promo-hero__cta:focus-visible {
+  outline: var(--hero-cta-border-w) solid var(--color-fg);
+  outline-offset: 4px;
+}
+
+.promo-hero__cta:active {
   transform: scale(0.98);
 }
 

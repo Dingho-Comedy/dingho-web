@@ -6,7 +6,8 @@ import { SiteShell } from "@/components/layout/site-shell";
 import { AboutDinghaoSection } from "@/components/sections/about-dinghao-section";
 import { AppleMusicSection } from "@/components/sections/apple-music-section";
 import { FaqSection } from "@/components/sections/faq-section";
-import { HeroSection } from "@/components/sections/hero-section";
+// import { HeroSection } from "@/components/sections/hero-section";
+import { PromoHeroSection } from "@/components/sections/promo-hero-section";
 import { ProgramListSection } from "@/components/sections/program-list-section";
 
 /**
@@ -34,7 +35,8 @@ export function App() {
 
   return (
     <SiteShell>
-      <HeroSection />
+      {/* <HeroSection /> */}
+      <PromoHeroSection />
       <ProgramListSection />
       <AboutDinghaoSection />
       <AppleMusicSection />
